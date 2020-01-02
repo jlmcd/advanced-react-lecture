@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import './App.css'
+import ComplexButton from './components/ComplexButton'
+import SimplerButton from './components/SimplerButton'
+import Toggle from './components/Toggle'
+import ToggleRenderProps from './components/ToggleRenderProps'
+import ToggleRPC from './components/ToggleRPC'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ComplexButton />
+      <SimplerButton />
+      <Toggle>
+        <h1>What do you do when you see a space man?</h1>
+      </Toggle>
+      <ToggleRenderProps
+        render={({on, setOn, style}) => (
+          <div>
+            {on && <h1>Park your car, man.</h1>}
+            <button style={style} onClick={() => setOn(prev => !prev)}>Show/Hide</button>
+          </div>
+        )}
+      />
+      <ToggleRPC>
+      {({on, setOn, style}) => (
+          <div>
+            {on && <h1>Show Me</h1>}
+            <button style={style} onClick={() => setOn(prev => !prev)}>Show/Hide</button>
+          </div>
+        )}
+      </ToggleRPC>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
